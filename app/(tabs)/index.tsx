@@ -3,7 +3,8 @@ import { Image } from "react-native";
 import React, { useState } from "react";
 import { Text, View } from "@/components/Themed";
 import Question from "@/components/ui/Question";
-import question from "../Data/Dummy.js"
+import {questions} from "../Data/Dummy.js"
+import ThoughtSection from "@/components/Thoughts";
 export default function TabOneScreen() {
   const [activeTab, setActiveTab] = useState("Questions");
 
@@ -56,15 +57,15 @@ export default function TabOneScreen() {
            {question.map((item) => (
             <Question  key={item.Question}
               Question={item.Question}
-              Answer={item.Answer.text}
+              Answers={item.Answers}
               QuestionBy={item.QuestionBy}
-              AnswerBy={item.Answer}
+              // AnswerBy={item.Answer}
               Date={item.Date}
               />
           ))}
          </ScrollView>
         ) : (
-          <Text style={styles.contentText} >This is the Thoughts view.</Text>
+          <ThoughtSection />
         )}
       </View>
     </View>

@@ -7,13 +7,9 @@ import { useEffect } from 'react';
 import 'react-native-reanimated';
 import '../global.css';
 import { useColorScheme } from '@/components/useColorScheme';
-
-export {
-
-
-  
-  ErrorBoundary,
-} from 'expo-router';
+import {store} from '@/redux/store';
+import { Provider } from 'react-redux';
+export {ErrorBoundary} from 'expo-router';
 
 export const unstable_settings = {
   initialRouteName: '(tabs)',
@@ -51,10 +47,12 @@ function RootLayoutNav() {
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+    <Provider store={store}>
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
       </Stack>
+    </Provider>
     </ThemeProvider>
   );
 }
